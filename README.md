@@ -1,6 +1,6 @@
-## Constraining Dark Energy with Baryon Acoustic Oscillations (v2)
+# Constraining Dark Energy with Baryon Acoustic Oscillations (v2)
 
-# Context
+## Context
 -----------------------------------------------------------------------
 This is a redux of a project I completed in my third year of university.
 I intended to only briefly revisit it, but the original directory was a
@@ -9,7 +9,7 @@ laptop) to Triumvirate for power-/bispectrum estimation, and after a
 year of cosmology I was much better equipped to appreciate and execute
 it -- so I redid it. 
 
-# Acknowledgments
+## Acknowledgments
 -----------------------------------------------------------------------
 Many thanks to Dr. Florian Beutler (https://mystatisticsblog.blogspot.com), 
 for the project pipeline and the original code upon which this project was 
