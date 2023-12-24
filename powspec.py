@@ -575,8 +575,8 @@ def gelman_rubin_convergence(within_chain_var, mean_chain, chain_length):
     
     Parameters
     ----------
-    within_chain_var: variance for each parameter across all chains.
-    mean_chain: mean parameter values across all chains.
+    within_chain_var: variance for each parameter across all chains
+    mean_chain: mean parameter values across all chains
     chain_length: length of each chain
     
     Return
