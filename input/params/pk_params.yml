@@ -1,0 +1,78 @@
+# -- I/O ----------------------------------------------------------------------
+
+# Directories for input/output.
+directories:
+  catalogues: input/new_cats
+  measurements: output/measurements
+
+# Filenames (including extensions) for input sources.
+files:
+  data_catalogue: galaxy_DR12v5_LOWZ_South.fits
+  rand_catalogue: random1_DR12v5_LOWZ_South.fits
+
+# Tags to be substituted into input/output paths.
+tags:
+  output: _SGC_LOWZ
+
+# -- Sampling -----------------------------------------------------------------
+
+# Box size in each dimension (in Mpc/h).
+boxsize:
+  x: 6000
+  y: 6000
+  z: 6000
+
+# Grid number in each dimension.
+ngrid:
+  x: 512
+  y: 512
+  z: 512
+
+# Alignment of particles in the box.
+alignment: centre
+padscale:
+padfactor:
+
+# Mesh assignment [ngp | cic | =tsc | pcs].
+assignment: tsc
+interlace: true
+
+# -- Measurements -------------------------------------------------------------
+# Type of catalogue [survey | random | sim | none].
+catalogue_type: survey
+
+# Statistic to measure.
+statistic_type: powspec
+
+# Degrees of the multipoles (only L for 2-point statistics).
+degrees:
+  ell1: 0
+  ell2: 0
+  ELL: 0
+
+# Orders of wide-angle corrections.
+wa_orders:
+  i: 0
+  j: 0
+
+# Form of the three-point statistics [=diag | off-diag | row | full].
+form: diag
+
+# Normalisation convention [=particle | mesh | mesh-mixed | none].
+norm_convention: particle
+
+# Binning scheme [= lin | log | linpad | logpad | custom].
+binning: lin
+
+# Range of scales.
+# Wavenumbers in h/Mpc in Fourier space.
+# Separations in Mpc/h in configuration space.
+range: [0.005, 0.205]  # or: [.5, 1000.5]
+
+# Number of bins.
+num_bins: 200
+
+# Bin index.
+idx_bin: 0
+
+verbose: 20
