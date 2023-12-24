@@ -831,22 +831,10 @@ def estimate_dv(ell, tag):
     pk_wiggle = cosmotools.linearpower.LinearPower(cosmo=cosmo, redshift=0., transfer='CLASS')
 
     krange = np.arange(0.005, 0.205, 0.001)
-
-    pk_wiggle2 = pk_class(krange)
-    plt.clf()
-    ax = sns.lineplot(x=krange, y=pk_wiggle(krange) * krange, label='CLASS Pk', color='r')
-    ax = sns.lineplot(x=krange, y=pk_wiggle2 * krange, label='CLASS Pk2', color='magenta')
-    ax = sns.lineplot(x=krange, y=pk_sgc * krange, label='data Pk', color='g')
-    ax = sns.lineplot(x=krange, y=pk_sgc * krange - pk_wiggle(krange) * krange, label='residuals', color='b')
-    ax.set_ylabel('$kP(k)$')
-    ax.set_xlabel('$k$')
-    plt.axhline(y = 0.5, color = 'black', linestyle = '-') 
-    plt.savefig('test_residuals', dpi=800)
-
     os_model = get_oscillation(krange, pk_wiggle, pk_no_bao)
     start = [2.37, -0.076, 38., -3547., 15760., -22622., 1., 9.41]
     result = op.minimize(calc_chi2, start, args=(boss_data, { 'noBAO': pk_no_bao, 'os_model': os_model }, get_shifted_model))
-    # print("result['x'] = ", result['x'])
+    print("result['x'] = ", result['x'])
     
     best_fit_model = get_shifted_model(result["x"], krange, { 'noBAO': pk_no_bao, 'os_model': os_model }) / get_smooth_model(result["x"], krange, { 'noBAO': pk_no_bao })
     boss_data[0]['ratio'] = boss_data[0]['pk']/get_smooth_model(result["x"], boss_data[0]['k'], { 'noBAO': pk_no_bao })
