@@ -14,12 +14,12 @@ it -- so I redid it.
 The models for the power spectrum are surprisingly tricky to implement
 without `nbodykit`. I have created a tiny, very basic package that draws
 most of its calculations from `nbodykit` but implements the cosmology 
-directly from `Class` as opposed to the `classylss` package (which is also
-incompatible with my laptop). This has led to a normalisation issue
-which appears to be the main bottleneck for the analysis at this stage.
-It should be straightforward, if time-consuming, to cross-check that 
-`Class` is being used in the `LinearPower` and transfer function classes 
-analogously to the `Cosmology` class implemented by `nbodykit`.
+directly from `Class` as opposed to the `Cosmology` class with the 
+`classylss` package (which is also incompatible with my laptop). 
+This has led to a normalisation issue which appears to be the main bottleneck 
+for the analysis at this stage. It should be straightforward, if time-consuming, 
+to cross-check that `Class` is being used in the `LinearPower` and transfer 
+function classes analogously to the `Cosmology` class implemented by `nbodykit`.
 
 ## Acknowledgments
 -----------------------------------------------------------------------
