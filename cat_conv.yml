@@ -1,0 +1,15 @@
+# -- I/O ----------------------------------------------------------------------
+
+# Directory of raw (FITS format) catalogues.
+directories:
+  catalogues: input/new_cats
+  new_cats: input/new_cats
+  sims: mocks/SGC
+  new_sims: new_mocks/SGC
+
+# Filenames (including extensions) for input sources.
+files:
+  data_catalogue: galaxy_DR12v5_LOWZ_North.fits
+  rand_catalogue: random1_DR12v5_LOWZ_South.fits
+  data_sim: Patchy-Mocks-DR12NGC-COMPSAM_V6C_0500.dat
+  rand_sim: Patchy-Mocks-Randoms-DR12SGC-COMPSAM_V6C_x10.dat
