@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------
 This is a redux of a project I completed in my third year of university.
 I intended to only briefly revisit it, but the original directory was a
-mess, I had moved from using Nbodykit (which no longer runs on my 
+mess, I had moved from using `nbodykit` (which no longer runs on my 
 laptop) to `Triumvirate` for power-/bispectrum estimation, and after a
 year of cosmology I was much better equipped to appreciate and execute
 it -- so I redid it. 
