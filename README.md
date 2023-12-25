@@ -2,24 +2,25 @@
 
 ## Context
 -----------------------------------------------------------------------
-This is a redux of a project I completed in my third year of university.
+This is a reprise of a project I completed in my third year of university.
 I intended to only briefly revisit it, but the original directory was a
 mess, I had moved from using `nbodykit` (which no longer runs on my 
-laptop) to `Triumvirate` for power-/bispectrum estimation, and after a
+laptop) to `Triumvirate` for power-/bispectrum estimation, and after another
 year of cosmology I was much better equipped to appreciate and execute
-it -- so I redid it. 
+it -- so I decided to redo it.
 
 ## Current Issues
 -----------------------------------------------------------------------
 The models for the power spectrum are surprisingly tricky to implement
-without `nbodykit`. I have created a tiny, very basic package that draws
-most of its calculations from `nbodykit` but implements the cosmology 
+without `nbodykit`. I have created a tiny, very basic package that performs calculations
+largely the same way as `nbodykit` but implements the cosmology 
 directly from `Class` as opposed to the `Cosmology` class with the 
 `classylss` package (which is also incompatible with my current setup). 
-This has led to a normalisation issue which appears to be the main bottleneck 
-for the analysis at this stage. It should be straightforward, if time-consuming, 
+This has led to a normalisation issue in the `CLASS` power spectrum model which appears to be 
+the main bottleneck for the analysis at this stage. It should be straightforward, if time-consuming, 
 to cross-check that `Class` is being used in the `LinearPower` and transfer 
 function classes analogously to the `Cosmology` class implemented by `nbodykit`.
+The implementation of the analytic models also needs to be cross-checked and refined.
 
 ## Acknowledgments
 -----------------------------------------------------------------------
