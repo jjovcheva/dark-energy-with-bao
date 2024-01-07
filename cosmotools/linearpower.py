@@ -169,7 +169,7 @@ class LinearPower(object):
 
         k = np.logspace(np.log10(kmin), np.log10(kmax), 1024)
         
-        # Get the linear power spectrum at a specific redshift.
+        # Get the linear power spectrum at a specific wavenumber.
         Plin = self(k)
         
         # Top-hat window function.
