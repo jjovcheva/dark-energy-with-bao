@@ -9,6 +9,7 @@ from numpy.linalg import inv
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 import seaborn as sns
+from astropy.cosmology import Planck18 as cosmo
 
 plt.rcParams.update({
     "text.usetex": True,
@@ -320,15 +321,15 @@ def read_pk(ell, cap, tag):
     c.append(df['Re{pk%s_shot}' %ell].to_list())
     
     return df
-
-cosmo = cosmology.setCosmology('WMAP9')
  
 def pk_wiggle(krange):
+    cosmo = cosmology.setCosmology('planck18')
     norm = cosmo.sigma(R=8, z=0.0, ps_args={'model': 'camb'})**2
     
     return cosmo.matterPowerSpectrum(krange, z = 0.0, model='camb') / norm
 
 def pk_no_bao(krange):
+    cosmo = cosmology.setCosmology('planck18')
     norm = cosmo.sigma(R=8, z=0.0, ps_args={'model': 'eisenstein98_zb'})**2
     
     return cosmo.matterPowerSpectrum(krange, z = 0.0, model='eisenstein98_zb') / norm
@@ -349,8 +350,6 @@ def cmp_ratio_with_error(pk1, pk2, models=[]):
     plt.xlim(0.01, 0.3)
     plt.savefig('cmp_ratio')
     return
-
-
 
 def estimate_dv(ell, tag):
     '''
