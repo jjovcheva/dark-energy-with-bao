@@ -7,7 +7,8 @@ I intended to only briefly revisit it, but the original directory was a
 mess, I had moved from using `nbodykit` (which no longer runs on my 
 laptop) to `Triumvirate` for power-/bispectrum estimation, and after another
 year of cosmology I was much better equipped to appreciate and execute
-it -- so I decided to redo it.
+it -- so I decided to redo it. The final constraint from the original project
+can be found in `plots`.
 
 ## Current Issues
 -----------------------------------------------------------------------
