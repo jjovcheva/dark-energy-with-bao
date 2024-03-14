@@ -41,6 +41,9 @@ cov_dir = 'output/covariances'
 conv_file = 'cat_conv.yml'
 param_file = 'input/params/pk_params.yml'
 
+zmin = 0.5
+zmax = 0.75
+
 def fits_intel():
     '''
     Inspect columns from FITS catalogue.
@@ -77,7 +80,7 @@ def read_data():
     cat_data = cat_data[1].data
         
     # Cut the catalogue for the appropriate redshifts.
-    cat_data = cat_data[(cat_data['Z'] > 0.04) & (cat_data['Z'] < 1.1)]
+    cat_data = cat_data[(cat_data['Z'] > zmin) & (cat_data['Z'] < zmax)]
         
     # Create combined systematic weight column.
     weight = cat_data['WEIGHT_SYSTOT'] * \
@@ -85,7 +88,10 @@ def read_data():
     ws = np.array(weight, dtype=np.float64)
     wc = np.array(cat_data['WEIGHT_FKP'], dtype=np.float64)
     nz = np.array(cat_data['NZ'], dtype=np.float64)
+    
+    zmean = np.average(cat_data['Z'], weights=(weight*cat_data['WEIGHT_FKP']))
 
+    print(zmean)
     return cat_data, nz, ws, wc
 
 def read_ran():
@@ -110,7 +116,7 @@ def read_ran():
     cat_ran = cat_ran[1].data
     
     # Cut the catalogue for the appropriate redshifts.
-    cat_ran = cat_ran[(cat_ran['Z'] > 0.01) & (cat_ran['Z'] < 0.9)]
+    cat_ran = cat_ran[(cat_ran['Z'] > zmin) & (cat_ran['Z'] < zmax)]
     
     # Create systematic weight column with all values equal to 1.
     ws = np.ones(shape=(cat_ran['WEIGHT_FKP'].size))
@@ -132,7 +138,7 @@ def read_dat_sim():
     dat_sim = dd.read_csv(
         os.path.join(pars['directories']['sims'], pars['files']['data_sim']),\
         header=0, 
-        delim_whitespace=True,
+        sep='\s+',
         names=['RA', 'DEC', 'Z', 'dummy1', 'NZ', 'dummy2', 'veto', 'Weight']
         )
     
@@ -332,7 +338,8 @@ def process_data(ell, cap, tag):
     with open(conv_file) as fp1:
         conv = yaml.load(fp1)    
        
-    if not os.path.isfile(os.path.join(conv['directories']['new_cats'], conv['files']['data_catalogue'])):
+    if not os.path.isfile(
+        os.path.join(conv['directories']['new_cats'], conv['files']['data_catalogue'])):
         conv_fits('dat')
     else:
         pass
@@ -372,7 +379,7 @@ def calc_cov(ell, cap, N):
 
     list_of_pks = []
     for i in range(1, N):
-        pk_file = 'output/pk_sims_lowbins/%s/pk0_sim_%s_%d.txt' % (cap, cap, i)
+        pk_file = 'output/pk_sims/%s/pk0_sim_%s_%d.txt' % (cap, cap, i)
         
         # Load saved power spectra as dataframe.
         df = np.loadtxt(pk_file, skiprows=13, usecols=[0,3,5])
@@ -410,7 +417,7 @@ def process_sims(ell, cap, N):
         
     # Loop through all of the data sims.
     for i in range(1, N):
-        pk_file = 'output/pk_sims_lowbins/%s/pk%s_sim_%s_%d.txt' % (cap, ell, cap, i)
+        pk_file = 'output/pk_sims/%s/pk%s_sim_%s_%d.txt' % (cap, ell, cap, i)
         print('Calculating %s... ' % pk_file)
 
         # Only calculate power spectra which are not already on disk.
@@ -444,7 +451,7 @@ def process_sims(ell, cap, N):
                 
             # Update parameter file for Triumvirate.
             pars['directories']['catalogues'] = 'new_mocks/%s' % cap
-            pars['directories']['measurements'] = 'output/pk_sims_lowbins/%s' % cap
+            pars['directories']['measurements'] = 'output/pk_sims/%s' % cap
             pars['files']['data_catalogue'] = 'Patchy-Mocks-DR12%s-COMPSAM_V6C_%0.4d.dat.csv' % (cap, i)
             pars['files']['rand_catalogue'] = str(conv['files']['rand_sim'] + '.csv')
             pars['degrees']['ELL'] = ell
@@ -476,6 +483,6 @@ def plot_corr(cov_matrix, ell, cap):
     plt.savefig('corr_matrix_%s_%s' %(cap, ell), dpi=1000)
 
 if __name__ == '__main__':
-    # process_data(0, 'NGC', 'CMASS')
-    #process_sims(0, 'NGC', 101)
-    plot_corr(process_sims(0, 'NGC', 68), 0, 'NGC')
+    # process_data(0, 'SGC', 'CMASSLOWZTOT')
+    process_sims(0, 'SGC', 510)
+    # plot_corr(process_sims(0, 'NGC', 101), 0, 'NGC')
