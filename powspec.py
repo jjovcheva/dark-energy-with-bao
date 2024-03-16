@@ -167,7 +167,7 @@ def read_ran_sim():
     ran_sim = dd.read_csv(
         os.path.join(pars['directories']['sims'], pars['files']['rand_sim']),\
         header=0, 
-        delim_whitespace=True,
+        sep='\s+',
         names=['RA', 'DEC', 'Z', 'NZ', 'dummy1', 'veto', 'Weight']
         )
 
@@ -484,5 +484,5 @@ def plot_corr(cov_matrix, ell, cap):
 
 if __name__ == '__main__':
     # process_data(0, 'SGC', 'CMASSLOWZTOT')
-    process_sims(0, 'SGC', 510)
-    # plot_corr(process_sims(0, 'NGC', 101), 0, 'NGC')
+    process_sims(0, 'NGC', 600)
+    # plot_corr(process_sims(0, 'SGC', 1001), 0, 'SGC')
