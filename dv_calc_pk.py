@@ -28,9 +28,9 @@ def calc_cov(ell, cap, N):
     
     Parameters
     -----------
-    ell: degree of multipole
-    cap: SGC or NGC
-    N: number of mock power spectra
+    ell : degree of multipole
+    cap : SGC or NGC
+    N : number of mock power spectra
     '''
 
     list_of_pks = []
@@ -55,9 +55,9 @@ def get_smooth_model(parameters, k, templates):
     
     Parameters
     ----------
-    parameters: p0, p1, etc. 
-    k: wavenumber
-    templates: models (here, without BAO)
+    parameters : p0, p1, etc. 
+    k : wavenumber
+    templates : models (here, without BAO)
     '''
     polynomials = parameters[1]/k**3 + parameters[2]/k**2 + parameters[3]/k + parameters[4] + parameters[5]*k
     return parameters[0]*parameters[0]*templates['noBAO'](k) + polynomials
@@ -123,9 +123,9 @@ def read_pk(ell, cap, tag):
     
     Parameters
     ----------
-    ell: multipole degree
-    cap: 'NGC' or 'SGC'
-    tag: CMASS, LOWZ, etc.
+    ell : multipole degree
+    cap : 'NGC' or 'SGC'
+    tag : CMASS, LOWZ, etc.
     '''
 
     pk_dir = './output/measurements'
@@ -213,12 +213,12 @@ def prep_gelman_rubin(sampler):
     
     Parameters
     ----------
-    sampler: sampler containing information about the MCMC chains.
+    sampler : sampler containing information about the MCMC chains.
     
     Return
     ------
-    within_chain_var: variance for each parameter across all chains.
-    mean_chain: mean parameter values across all chains.
+    within_chain_var : variance for each parameter across all chains.
+    mean_chain : mean parameter values across all chains.
     '''
     # Dimensionality of the parameter space.
     dim = sampler.chain.shape[2]
