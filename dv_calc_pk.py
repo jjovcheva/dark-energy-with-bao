@@ -88,15 +88,15 @@ def calc_cov_bootstrap(ell, cap, N, B=3000):
     '''
     Calculate the bootstrap-averaged covariance matrix from simulated catalogues.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     ell : degree of multipole
     cap : SGC or NGC
     N : number of mock power spectra
     B : number of bootstrap resamples (default=1000)
 
-    Returns:
-    --------
+    Returns
+    -------
     The averaged covariance matrix over B bootstrap resamples.
     '''
     list_of_pks = []
