@@ -304,15 +304,15 @@ def calculate_DV(zmean, cosmo):
     '''
     Calculate the spherically-averaged distance.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     z : float
         Redshift.
     cosmo : astropy.cosmology.FLRW
         Astropy cosmology object.
 
-    Returns:
-    --------
+    Returns
+    -------
     D_V : float
         The spherically-averaged distance measure D_V in Mpc.
     '''
